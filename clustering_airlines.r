@@ -1,0 +1,11 @@
+library("factoextra")
+airlines<-read.csv("C:\\Data_science\\EXCLER\\My Assignments\\Clustering\\EastWestAirlines.csv")
+str(airlines)
+df<-dist(airlines,method = "euclidean")
+airline_clust<-hclust(df, method = 'average')
+fviz_dend(airline_clust,cex = 0.5)
+fviz_dend(airline_clust,cex=0.5,rect = TRUE,k=4,color_labels_by_k = TRUE)
+clusters<-cutree(airline_clust, k=5)
+Final_output=data.frame('Uni'=airlines[,2],'Cluster' =clusters)
+View(Final_output)
+# the data is been clustered for k =5 but ost of the data is being clustered to 1 .
